@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
         std::cout << argv[i] << "\n"; 
 
 	int *p =(int *)malloc(10 * sizeof(int));
-	//free(p);
+	free(p);
 	pthread_t child;
 	pthread_create(&child, NULL, child_fn, NULL);
 	var++; /* Unprotected relative to child */

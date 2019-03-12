@@ -19,6 +19,7 @@ program=$2
 
 # Variables
 finOut=0
+currPath=$
 printMake="PASS"
 printVal="PASS"
 printHel="PASS"
@@ -43,7 +44,7 @@ else
 		shift 2
 
 		# Run memory leak test
-		valgrind --leak-check=full --error-exitcode=1 ./$program $@
+		valgrind --leak-check=full --error-exitcode=1 ./$program $@ &>/dev/null
 		outVal=$?
 
 		if [ $outVal -eq 1 ]; then
@@ -52,7 +53,7 @@ else
 		fi
 
 		# Run thread racing test
-		valgrind --tool=helgrind --error-exitcode=1 ./$program $@
+		valgrind --tool=helgrind --error-exitcode=1 ./$program $@ &>/dev/null
 		outHel=$?
 		if [ $outHel -eq 1 ]; then
 			finOut=$(($finOut + 1))
@@ -60,6 +61,6 @@ else
 		fi
 	fi
 fi
-
+cd -
 # Print the result
 printMsg $finOut $printMake $printVal $printHel
