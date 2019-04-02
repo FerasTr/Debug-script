@@ -19,17 +19,16 @@ program=$2
 
 # Variables
 finOut=0
-currPath=$
 printMake="PASS"
 printVal="PASS"
 printHel="PASS"
 
 # Check if Makefile exists
 cd $dirPath
-if [ ! -f Makefile ]; then
-    echo "MAKEFILE NOT FOUND"
-    exit 7
-else
+#if [ ! -f Makefile ]; then
+#    echo "MAKEFILE NOT FOUND"
+#    exit 7
+#else
 	# Run Makefile
 	make
 	outMake=$?
